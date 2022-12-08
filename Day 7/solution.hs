@@ -65,16 +65,7 @@ doCommand dir (ListDirectory cmds) = foldl doListCommand dir cmds
 
 doListCommand :: Directory -> DirectoryCommand -> Directory
 doListCommand a b | trace ("doListCommand, dir: " ++ show a ++ "\ncmd: " ++ show b ++ "\n") False = undefined
-doListCommand Directory {
-        name=n, subDirectories=sd, fileSize=fs, parent=p
-    } (FileDesc s i) = Directory {
-        name=n, subDirectories=sd, fileSize=fs + i, parent=p
-    }
-doListCommand dir (DirDesc s) = Directory{
-        name=name dir, subDirectories=subDirectories dir ++ [Directory {
-            name=s, subDirectories=[], fileSize=0, parent=Just dir
-        }] , fileSize=fileSize dir, parent=parent dir
-    }
+doListCommand x y = error "doListCommand Not Implemented"
 
 solvePart1 :: [DollarCommand] -> String
 solvePart1 = show . foldl' doCommand rootDirectory
